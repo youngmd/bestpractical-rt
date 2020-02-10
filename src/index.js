@@ -11,6 +11,7 @@ class RT {
     this.username = username;
     this.password = password;
     this.loggedIn = false;
+    this.cookie = '';
     this.uribase = urljoin(host, 'REST/1.0');
   }
 
@@ -24,6 +25,7 @@ class RT {
     }, function(error, response, body) {
       if (response.statusCode == 200) {
         this.loggedIn = true;
+        this.cookie = response['Session-Cookie'];
         callback();
         return;
       }
